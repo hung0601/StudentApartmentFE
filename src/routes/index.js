@@ -14,10 +14,12 @@ const AppRoutes = () => {
   const [sortType, setSortType] = useState(0);
   const [curPage, setCurPage] = useState(1);
   const [filterCondition, setFilterCondition] = useState({});
-  const [curNavOption, setCurNavOption] = useState('home');
+  const [curNavOption, setCurNavOption] = useState("home");
   const [useRightFilter, setUseRightFilter] = useState(false);
   const [priceRangeRF, setPriceRangeRF] = useState();
   const [areaRangeRF, setAreaRangeRF] = useState();
+  const [navbarApartType, setNavbarApartType] = useState(0);
+  const [isResetMainFilter, setIsResetMainFilter] = useState(false);
 
   const getListPost = async () => {
     const res = await postApi.getList({
@@ -58,19 +60,17 @@ const AppRoutes = () => {
                 setPriceRangeRF,
                 areaRangeRF,
                 setAreaRangeRF,
+                navbarApartType,
+                setNavbarApartType,
+                isResetMainFilter,
+                setIsResetMainFilter,
               }}
             >
               <Layout>
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route
-                    path="/post/:postId"
-                    element={<PostDetail />}
-                  />
-                  <Route
-                    path="/bookmarks"
-                    element={<Bookmark />}
-                  />
+                  <Route path="/post/:postId" element={<PostDetail />} />
+                  <Route path="/bookmarks" element={<Bookmark />} />
                 </Routes>
               </Layout>
             </PostContext.Provider>

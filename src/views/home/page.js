@@ -3,14 +3,23 @@ import Col from "react-bootstrap/Col";
 import "./pageStyle.css";
 import ListPost from "./ListPost";
 import RightFilter from "../../components/RightFilter";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { PostContext } from "../../routes";
 
 export default function Home() {
+  const { setCurNavOption, navbarApartType } = useContext(PostContext);
   useEffect(() => {
     //scroll to top:
     const offset = 0;
     document.body.scrollTop = offset; // For Safari
     document.documentElement.scrollTop = offset; // For Chrome, Firefox, IE and Opera
+    //check navbar apartment type status:
+    if (navbarApartType === 0) {
+      setCurNavOption("home");
+    } else {
+      setCurNavOption(`type_${navbarApartType}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

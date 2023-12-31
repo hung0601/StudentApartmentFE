@@ -21,7 +21,6 @@ export default function ListPost() {
     setSortType,
     curPage,
     setCurPage,
-    setCurNavOption,
     useRightFilter,
     priceRangeRF,
     areaRangeRF,
@@ -82,10 +81,6 @@ export default function ListPost() {
     setCurPage(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortType]);
-  useEffect(() => {
-    setCurNavOption("home");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>

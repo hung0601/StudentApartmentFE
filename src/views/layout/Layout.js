@@ -11,7 +11,13 @@ import { PostContext } from "../../routes";
 import { toast } from "react-toastify";
 
 export default function Layout({ children }) {
-  const { curNavOption } = useContext(PostContext);
+  const {
+    curNavOption,
+    setCurNavOption,
+    setFilterCondition,
+    setNavbarApartType,
+    setIsResetMainFilter,
+  } = useContext(PostContext);
   const btnStyle = "d-flex align-items-center gap-1 cursor-pointer";
   const user = JSON.parse(localStorage.getItem("user"));
   const [isAuth, setIsAuth] = useState(false);
@@ -21,6 +27,17 @@ export default function Layout({ children }) {
     localStorage.removeItem("user");
     if (window.location.pathname === "/bookmarks") window.location.href = "/";
     else window.location.reload();
+  };
+
+  const handleSelectApartType = (type) => {
+    setIsResetMainFilter(true);
+    if (window.location.pathname !== "/") {
+      navigate("/");
+      setNavbarApartType(type);
+    } else {
+      setCurNavOption(`type_${type}`);
+    }
+    setFilterCondition({ type: [type] });
   };
 
   useEffect(() => {
@@ -124,15 +141,39 @@ export default function Layout({ children }) {
               Trang chủ
             </span>
           </a>
-          <a href="#" className="px-3 nav-link d-flex align-items-center">
-            Phòng trọ
-          </a>
-          <a href="#" className="px-3 nav-link d-flex align-items-center">
-            Nhà nguyên căn
-          </a>
-          <a href="#" className="px-3 nav-link d-flex align-items-center">
-            Chung cư
-          </a>
+          <div
+            className={clsx(
+              "px-3 nav-link d-flex align-items-center cursor-pointer",
+              curNavOption === "type_1" && "bg-white"
+            )}
+            onClick={() => handleSelectApartType(1)}
+          >
+            <span className={clsx(curNavOption === "type_1" && "text-main")}>
+              Phòng trọ
+            </span>
+          </div>
+          <div
+            className={clsx(
+              "px-3 nav-link d-flex align-items-center cursor-pointer",
+              curNavOption === "type_2" && "bg-white"
+            )}
+            onClick={() => handleSelectApartType(2)}
+          >
+            <span className={clsx(curNavOption === "type_2" && "text-main")}>
+              Nhà nguyên căn
+            </span>
+          </div>
+          <div
+            className={clsx(
+              "px-3 nav-link d-flex align-items-center cursor-pointer",
+              curNavOption === "type_3" && "bg-white"
+            )}
+            onClick={() => handleSelectApartType(3)}
+          >
+            <span className={clsx(curNavOption === "type_3" && "text-main")}>
+              Chung cư
+            </span>
+          </div>
         </div>
       </div>
       <div

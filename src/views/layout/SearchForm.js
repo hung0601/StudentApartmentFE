@@ -23,6 +23,9 @@ export default function SearchForm() {
     setFilterCondition,
     useRightFilter,
     setUseRightFilter,
+    isResetMainFilter,
+    setIsResetMainFilter,
+    setCurNavOption,
   } = useContext(PostContext);
   const [priceRange, setPriceRange] = useState({ min: -1, max: -1 });
   const [areaRange, setAreaRange] = useState({ min: -1, max: -1 });
@@ -107,6 +110,8 @@ export default function SearchForm() {
     setSortType(0);
     setCurPage(1);
     setUseRightFilter(false);
+    setIsResetMainFilter(false);
+    setCurNavOption("home");
 
     let filterCondition = {};
     if (apartTypes.length > 0) {
@@ -170,10 +175,15 @@ export default function SearchForm() {
       setWard("");
     }
   }, [useRightFilter]);
-  // useEffect(() => {
-  //   setUseRightFilter(false);
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [apartTypes, priceRange, areaRange, district, ward]);
+  useEffect(() => {
+    if (isResetMainFilter) {
+      setApartTypes([]);
+      setPriceRange({ min: -1, max: -1 });
+      setAreaRange({ min: -1, max: -1 });
+      setDistrict("");
+      setWard("");
+    }
+  }, [isResetMainFilter]);
 
   return (
     <Stack
