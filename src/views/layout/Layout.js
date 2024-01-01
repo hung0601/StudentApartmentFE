@@ -126,59 +126,59 @@ export default function Layout({ children }) {
             </span>
           </Button>
         </Stack>
-        <div
-          className="fs-14 fw-700 d-flex justify-content-center border bg-dark text-white flex-wrap"
-          style={{ minHeight: "42px" }}
+      </div>
+      <div
+        className="fs-14 fw-700 d-flex justify-content-center border bg-dark text-white flex-wrap"
+        style={{ minHeight: "42px", marginTop: "54px" }}
+      >
+        <a
+          href="/"
+          className={clsx(
+            "px-3 nav-link d-flex align-items-center",
+            curNavOption === "home" && "bg-white"
+          )}
         >
-          <a
-            href="/"
-            className={clsx(
-              "px-3 nav-link d-flex align-items-center",
-              curNavOption === "home" && "bg-white"
-            )}
-          >
-            <span className={clsx(curNavOption === "home" && "text-main")}>
-              Trang chủ
-            </span>
-          </a>
-          <div
-            className={clsx(
-              "px-3 nav-link d-flex align-items-center cursor-pointer",
-              curNavOption === "type_1" && "bg-white"
-            )}
-            onClick={() => handleSelectApartType(1)}
-          >
-            <span className={clsx(curNavOption === "type_1" && "text-main")}>
-              Phòng trọ
-            </span>
-          </div>
-          <div
-            className={clsx(
-              "px-3 nav-link d-flex align-items-center cursor-pointer",
-              curNavOption === "type_2" && "bg-white"
-            )}
-            onClick={() => handleSelectApartType(2)}
-          >
-            <span className={clsx(curNavOption === "type_2" && "text-main")}>
-              Nhà nguyên căn
-            </span>
-          </div>
-          <div
-            className={clsx(
-              "px-3 nav-link d-flex align-items-center cursor-pointer",
-              curNavOption === "type_3" && "bg-white"
-            )}
-            onClick={() => handleSelectApartType(3)}
-          >
-            <span className={clsx(curNavOption === "type_3" && "text-main")}>
-              Chung cư
-            </span>
-          </div>
+          <span className={clsx(curNavOption === "home" && "text-main")}>
+            Trang chủ
+          </span>
+        </a>
+        <div
+          className={clsx(
+            "px-3 nav-link d-flex align-items-center cursor-pointer",
+            curNavOption === "type_1" && "bg-white"
+          )}
+          onClick={() => handleSelectApartType(1)}
+        >
+          <span className={clsx(curNavOption === "type_1" && "text-main")}>
+            Phòng trọ
+          </span>
+        </div>
+        <div
+          className={clsx(
+            "px-3 nav-link d-flex align-items-center cursor-pointer",
+            curNavOption === "type_2" && "bg-white"
+          )}
+          onClick={() => handleSelectApartType(2)}
+        >
+          <span className={clsx(curNavOption === "type_2" && "text-main")}>
+            Nhà nguyên căn
+          </span>
+        </div>
+        <div
+          className={clsx(
+            "px-3 nav-link d-flex align-items-center cursor-pointer",
+            curNavOption === "type_3" && "bg-white"
+          )}
+          onClick={() => handleSelectApartType(3)}
+        >
+          <span className={clsx(curNavOption === "type_3" && "text-main")}>
+            Chung cư
+          </span>
         </div>
       </div>
       <div
         className="d-flex flex-column align-items-center py-3"
-        style={{ backgroundColor: "#EAFEF1", marginTop: "97px" }}
+        style={{ backgroundColor: "#EAFEF1" }}
       >
         <div className="text-main-bolder fw-bold fs-30 fw-700">
           Tìm phòng trọ nhanh, phòng trọ mới nhất trên toàn quốc

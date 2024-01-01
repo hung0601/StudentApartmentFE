@@ -31,7 +31,7 @@ export default function RightFilter({ marginTop }) {
       if (item.max > 0) condition.areaMax = item.max;
     }
     setFilterCondition(condition);
-    const offset = 180;
+    const offset = 220;
     document.body.scrollTop = offset; // For Safari
     document.documentElement.scrollTop = offset; // For Chrome, Firefox, IE and Opera
   };

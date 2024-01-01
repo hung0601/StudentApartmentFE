@@ -17,25 +17,29 @@ export default function ApartTypeFilterForm({ apartTypes, setApartTypes }) {
 
   return (
     <Form style={{ minWidth: "230px" }}>
-      {apartFilter?.map((item, index) => (
-        <div className="px-3 py-1" key={index}>
-          <div className="d-inline-flex gap-1">
-            {item.value === 0 && <IApart1 />}
-            {item.value === 1 && <IApart2 />}
-            {item.value === 2 && <IApart3 />}
-            <span>{item.name}</span>
+      {apartFilter?.map((item, index) => {
+        var curVal = item.value;
+        return (
+          <div className="px-3 py-1" key={index}>
+            <div className="d-inline-flex gap-1">
+              {item.value === 0 && <IApart1 />}
+              {item.value === 1 && <IApart2 />}
+              {item.value === 2 && <IApart3 />}
+              <span>{item.name}</span>
+            </div>
+            <Form.Check
+              type="checkbox"
+              reverse
+              aria-label={item.name}
+              checked={apartTypes.find((item) => item === curVal)}
+              className="float-end"
+              onClick={() => handleSelect(item)}
+              onChange={() => null}
+            />
           </div>
-          <Form.Check
-            type="checkbox"
-            reverse
-            checked={apartTypes[index]}
-            aria-label={item.name}
-            className="float-end"
-            onClick={() => handleSelect(item)}
-          />
-        </div>
-      ))}
-      <button        
+        );
+      })}
+      <button
         type="reset"
         className="border-0 bg-white text-start ps-3 py-1 text-hover-main fs-14 fw-500"
         onClick={() => setApartTypes([])}

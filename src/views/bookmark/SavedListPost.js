@@ -39,7 +39,7 @@ export default function SavedListPost() {
       setCurPage(index + 1);
     }
     //scroll to top
-    const offset = 180;
+    const offset = 0;
     document.body.scrollTop = offset; // For Safari
     document.documentElement.scrollTop = offset; // For Chrome, Firefox, IE and Opera
   };
@@ -48,7 +48,7 @@ export default function SavedListPost() {
     toast.success("Đã bỏ lưu khỏi mục Yêu thích!");    
     await getSavedListPost();
     //scroll to top:
-    const offset = 180;
+    const offset = 220;
     document.body.scrollTop = offset; // For Safari
     document.documentElement.scrollTop = offset; // For Chrome, Firefox, IE and Opera
   };

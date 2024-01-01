@@ -44,7 +44,7 @@ export default function ListPost() {
       setCurPage(index + 1);
     }
     //scroll to top
-    const offset = 180;
+    const offset = 220;
     document.body.scrollTop = offset; // For Safari
     document.documentElement.scrollTop = offset; // For Chrome, Firefox, IE and Opera
   };
