@@ -28,7 +28,6 @@ export default function SearchForm() {
     setIsResetMainFilter,
     setCurNavOption,
     isSearchLoading,
-    setIsSearchLoading,
   } = useContext(PostContext);
   const [priceRange, setPriceRange] = useState({ min: -1, max: -1 });
   const [areaRange, setAreaRange] = useState({ min: -1, max: -1 });
@@ -194,7 +193,11 @@ export default function SearchForm() {
       className="ps-4 mt-2 mb-3 mx-auto flex-wrap"
       gap="4"
     >
-      <FilterSelector icon={<IApartAll />} current={<CurrentApartType />}>
+      <FilterSelector
+        icon={<IApartAll />}
+        current={<CurrentApartType />}
+        type="apartType"
+      >
         <ApartTypeFilterForm
           apartTypes={apartTypes}
           setApartTypes={setApartTypes}

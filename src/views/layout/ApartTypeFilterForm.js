@@ -2,8 +2,11 @@ import Form from "react-bootstrap/Form";
 import { apartFilter } from "../../constants";
 import { IApart1, IApart2, IApart3 } from "../../common/icons";
 import { GrPowerReset } from "react-icons/gr";
+import { useContext, useEffect } from "react";
+import { PostContext } from "../../routes";
 
 export default function ApartTypeFilterForm({ apartTypes, setApartTypes }) {
+  const { useRightFilter, isResetMainFilter } = useContext(PostContext);
   const handleSelect = (type) => {
     let types = [...apartTypes];
     let index = apartTypes.indexOf(type);
@@ -14,12 +17,17 @@ export default function ApartTypeFilterForm({ apartTypes, setApartTypes }) {
     }
     setApartTypes(types);
   };
+  useEffect(() => {
+    if (useRightFilter || isResetMainFilter) {
+      document.getElementById("reset-type").click();
+      document.getElementById("type-menu").style.display = "none";
+    }
+  }, [useRightFilter, isResetMainFilter]);
 
   return (
-    <Form style={{ minWidth: "230px" }}>
-      {apartFilter?.map((item, index) => {
-        var curVal = item.value;
-        return (
+    <div id="type-menu">
+      <Form style={{ minWidth: "230px" }} className="py-2">
+        {apartFilter?.map((item, index) => (
           <div className="px-3 py-1" key={index}>
             <div className="d-inline-flex gap-1">
               {item.value === 0 && <IApart1 />}
@@ -31,21 +39,21 @@ export default function ApartTypeFilterForm({ apartTypes, setApartTypes }) {
               type="checkbox"
               reverse
               aria-label={item.name}
-              checked={apartTypes.find((item) => item === curVal)}
               className="float-end"
               onClick={() => handleSelect(item)}
               onChange={() => null}
             />
           </div>
-        );
-      })}
-      <button
-        type="reset"
-        className="border-0 bg-white text-start ps-3 py-1 text-hover-main fs-14 fw-500"
-        onClick={() => setApartTypes([])}
-      >
-        <GrPowerReset /> Đặt lại
-      </button>
-    </Form>
+        ))}
+        <button
+          id="reset-type"
+          type="reset"
+          className="border-0 bg-white text-start ps-3 py-1 text-hover-main fs-14 fw-500"
+          onClick={() => setApartTypes([])}
+        >
+          <GrPowerReset /> Đặt lại
+        </button>
+      </Form>
+    </div>
   );
 }
