@@ -23,14 +23,7 @@ const AppRoutes = () => {
   const [isSearchLoading, setIsSearchLoading] = useState(false);
 
   const getListPost = async () => {
-    try {
-      if (
-        !useRightFilter &&
-        curNavOption !== "type_1" &&
-        curNavOption !== "type_2" &&
-        curNavOption !== "type_3"
-      )
-        setIsSearchLoading(true);
+    try {      
       const res = await postApi.getList({
         sortType: sortType,
         ...filterCondition,

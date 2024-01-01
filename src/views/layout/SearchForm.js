@@ -28,6 +28,7 @@ export default function SearchForm() {
     setIsResetMainFilter,
     setCurNavOption,
     isSearchLoading,
+    setIsSearchLoading,
   } = useContext(PostContext);
   const [priceRange, setPriceRange] = useState({ min: -1, max: -1 });
   const [areaRange, setAreaRange] = useState({ min: -1, max: -1 });
@@ -109,6 +110,7 @@ export default function SearchForm() {
   };
 
   const handleSearch = () => {
+    setIsSearchLoading(true);
     setSortType(0);
     setCurPage(1);
     setUseRightFilter(false);
@@ -133,8 +135,7 @@ export default function SearchForm() {
     }
     if (district) filterCondition.district = removeDivisionType(district);
     if (ward) filterCondition.ward = removeDivisionType(ward);
-    // if (street) filterCondition.street = street;
-    // console.log("filter condition::", filterCondition);
+    // if (street) filterCondition.street = street;    
     setFilterCondition(filterCondition);
     if (window.location.pathname !== "/") navigate("/");
   };
