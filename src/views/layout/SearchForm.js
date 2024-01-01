@@ -15,6 +15,7 @@ import LocationSelect from "../../components/LocationSelect";
 import { useNavigate } from "react-router-dom";
 import { locationList } from "../../constants/locationList";
 import { PostContext } from "../../routes";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function SearchForm() {
   const {
@@ -26,6 +27,8 @@ export default function SearchForm() {
     isResetMainFilter,
     setIsResetMainFilter,
     setCurNavOption,
+    isSearchLoading,
+    setIsSearchLoading,
   } = useContext(PostContext);
   const [priceRange, setPriceRange] = useState({ min: -1, max: -1 });
   const [areaRange, setAreaRange] = useState({ min: -1, max: -1 });
@@ -254,11 +257,15 @@ export default function SearchForm() {
       <button
         type="button"
         className="px-3 mb-1 border-0 rounded bg-main text-white fs-14 fw-600"
-        style={{ height: "44px" }}
+        style={{ height: "44px", width: "125px" }}
         onClick={handleSearch}
       >
-        Tìm kiếm
-        <CiSearch className="ms-1 fs-4" />
+        <span>Tìm kiếm</span>
+        {!isSearchLoading ? (
+          <CiSearch className="ms-1 fs-4" />
+        ) : (
+          <Spinner size="sm" className="ms-1" />
+        )}
       </button>
     </Stack>
   );

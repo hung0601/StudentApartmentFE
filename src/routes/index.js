@@ -20,14 +20,26 @@ const AppRoutes = () => {
   const [areaRangeRF, setAreaRangeRF] = useState();
   const [navbarApartType, setNavbarApartType] = useState(0);
   const [isResetMainFilter, setIsResetMainFilter] = useState(false);
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
 
   const getListPost = async () => {
-    const res = await postApi.getList({
-      sortType: sortType,
-      ...filterCondition,
-    });
-    // console.log("listpost::", res);
-    setListPost(res);
+    try {
+      if (
+        !useRightFilter &&
+        curNavOption !== "type_1" &&
+        curNavOption !== "type_2" &&
+        curNavOption !== "type_3"
+      )
+        setIsSearchLoading(true);
+      const res = await postApi.getList({
+        sortType: sortType,
+        ...filterCondition,
+      });
+      setListPost(res);
+      setIsSearchLoading(false);
+    } catch (e) {
+      setIsSearchLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -64,6 +76,8 @@ const AppRoutes = () => {
                 setNavbarApartType,
                 isResetMainFilter,
                 setIsResetMainFilter,
+                isSearchLoading,
+                setIsSearchLoading,
               }}
             >
               <Layout>
