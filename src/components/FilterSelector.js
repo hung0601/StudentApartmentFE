@@ -34,16 +34,15 @@ export default function FilterSelector({ children, icon, current }) {
       </div>
       <div className="mt-1"></div>
 
-      {show && (
-        <div
-          className={clsx(
-            "position-absolute end-0 top-100 shadow bg-white py-1"
-          )}
-          style={{ minWidth: "200px", zIndex: 2 }}
-        >
-          <div className="fs-14 fw-500">{children}</div>
-        </div>
-      )}
+      <div
+        className={clsx(
+          "position-absolute end-0 top-100 shadow bg-white py-1",
+          show ? "d-block" : "d-none"
+        )}
+        style={{ minWidth: "200px", zIndex: 2 }}
+      >
+        <div className="fs-14 fw-500">{children}</div>
+      </div>
     </div>
   );
 }

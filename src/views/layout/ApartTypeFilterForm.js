@@ -2,11 +2,8 @@ import Form from "react-bootstrap/Form";
 import { apartFilter } from "../../constants";
 import { IApart1, IApart2, IApart3 } from "../../common/icons";
 import { GrPowerReset } from "react-icons/gr";
-import { useContext, useEffect } from "react";
-import { PostContext } from "../../routes";
 
 export default function ApartTypeFilterForm({ apartTypes, setApartTypes }) {
-  const { useRightFilter, isResetMainFilter } = useContext(PostContext);
   const handleSelect = (type) => {
     let types = [...apartTypes];
     let index = apartTypes.indexOf(type);
@@ -17,12 +14,6 @@ export default function ApartTypeFilterForm({ apartTypes, setApartTypes }) {
     }
     setApartTypes(types);
   };
-  useEffect(() => {
-    if (useRightFilter || isResetMainFilter) {
-      document.getElementById("reset-type").click();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Form style={{ minWidth: "230px" }}>
@@ -37,15 +28,14 @@ export default function ApartTypeFilterForm({ apartTypes, setApartTypes }) {
           <Form.Check
             type="checkbox"
             reverse
+            checked={apartTypes[index]}
             aria-label={item.name}
             className="float-end"
             onClick={() => handleSelect(item)}
-            onChange={() => null}
           />
         </div>
       ))}
-      <button
-        id="reset-type"
+      <button        
         type="reset"
         className="border-0 bg-white text-start ps-3 py-1 text-hover-main fs-14 fw-500"
         onClick={() => setApartTypes([])}
